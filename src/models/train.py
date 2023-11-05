@@ -12,7 +12,6 @@ from joblib import dump
 df = pd.read_csv('data/interim/02_ParaNMT_train.csv')
 
 # Step 1: Train a logistic regression classifier
-# We will use the CountVectorizer to convert the text data into a bag-of-words model
 vectorizer = CountVectorizer()
 X = vectorizer.fit_transform(df['reference'])
 y = (df['ref_tox'] > 0.5).astype(int)  # Binary classification based on the toxicity threshold
@@ -24,7 +23,6 @@ classifier.fit(X, y)
 print("Done training the logistic regression model.")
 
 # Step 2: Identify toxic words
-# Get the feature names and their corresponding weights from the classifier
 feature_names = np.array(vectorizer.get_feature_names_out())
 weights = classifier.coef_[0]
 
@@ -67,11 +65,10 @@ def get_substitutes(sentence, toxic_words):
 
 print("Getting substitutes...")
 toxic_words = feature_names[toxic_indices]
-substitutes = get_substitutes('example sentence with toxic words', toxic_words)
+substitutes = get_substitutes('This is a bullshit', toxic_words)
 print("Done getting substitutes.")
 
 # Step 4: Rerank the substitutes
-# We will rerank based on the cosine similarity and the normalized weights as a proxy for non-toxicity
 def rerank_substitutes(substitutes, sentence_embeddings, toxic_weights):
     ranked_substitutes = {}
     for word, word_substitutes in substitutes.items():

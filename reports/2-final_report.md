@@ -27,5 +27,3 @@ Furthermore, the average reduction in toxicity scores after the application of B
 The implementation of the BERT-based text detoxification model yielded promising outcomes. The application of the model on the test dataset resulted in a reduction in the toxicity scores of the sentences, as indicated by the low mean squared error (MSE) between the original and detoxified sentences' toxicity levels.
 
 The success of the project is further underscored by the average reduction in toxicity scores, which showcases the model's effectiveness in sanitizing language. This reduction was consistent across a variety of sentence structures and topics, illustrating the model's robustness and adaptability. Overall, the project achieved its objective of creating a safer and more respectful communication environment by effectively reducing toxic language in text data.
-
-
